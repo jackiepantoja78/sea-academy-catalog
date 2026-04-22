@@ -193,7 +193,7 @@ const books = [
     "author": "Mary Kubica",
     "genre": "Thriller",
     "read": true,
-    "coverImage": "https://covers.openlibrary.org/b/isbn/9780778311409-L.jpg"
+    "coverImage": "https://covers.openlibrary.org/b/id/10677491-L.jpg"
   },
   {
     "title": "The gift",
@@ -211,7 +211,7 @@ const books = [
   },
   {
     "title": "Phoebe Berman's gonna lose it",
-    "author": "Sloane Tanen",
+    "author": "Brooke Averick",
     "genre": "Contemporary fiction",
     "read": false,
     "coverImage": "https://prodimage.images-bn.com/pimages/9798217346936_p0_v4_s1200x1200.jpg"
