@@ -1,31 +1,57 @@
 <!doctype html>
-<html>
+<html lang = "en">
   <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+    <title>my bookshelf</title>
+    <meta name="description" content="A personal book catalog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
   </head>
 
   <body>
     <header class="main-header">
-      <h1 class="title">LA TV Shows</h1>
+      <h1 class="title">my bookshelf</h1>
+      <p class="subtitle">a lil catalog of everything i've read (and want to)</p>
     </header>
+    <div class="controls">
+      <input
+        type="text"
+        id="search-input"
+        class="search-input"
+        placeholder="search by title or author..."
+      />
+      <div class="controls-row">
+        <select id="sort-select" class="control-select">
+          <option value="default">sort by...</option>
+          <option value="title-az">title a → z</option>
+          <option value="title-za">title z → a</option>
+          <option value="author-az">author a → z</option>
+          <option value="author-za">author z → a</option>
+        </select>
+        <select id="read-filter" class="control-select">
+          <option value="all">all books</option>
+          <option value="read">read</option>
+          <option value="unread">on my tbr</option>
+        </select>
+      </div>
+    </div>
+
     <div id="card-container"></div>
+
     <div class="card" style="display: none">
+      <img src="" alt="Book Cover" class="card-cover" />
       <div class="card-content">
-        <h2>TV Show Title</h2>
-        <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
-        </ul>
+        <span class="genre-badge"></span>
+        <span class="read-badge"></span>
+        <h2>Book Title</h2>
+        <p class="author">by Author</p>
       </div>
     </div>
     <div class="footer">
-      <button onclick="quoteAlert()">Get A Quote!</button>
-      <button onclick="removeLastCard()">Remove A Card!</button>
+      <span id="book-count" class="book-count"></span>
+      <button onclick="clearFilters()">Clear Filters</button>
     </div>
+
+    <script src = "scripts.js"></script>
   </body>
 </html>
