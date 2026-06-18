@@ -255,14 +255,26 @@ function getFilteredAndSorted() {
   const query = document.getElementById("search-input").value.toLowerCase();
   const sort = document.getElementById("sort-select").value;
   const readStatus = document.getElementById("read-filter").value;
-
-  const result = [];
+  const genreFilter = document.getElementById("genre-filter").value;//AW Added
+  //console.log(query);
+  //console.log(sort);
+  //console.log(readStatus);
+  //console.log(genreFilter);
+  const result = [];  
 
   // loop through all books to find matches
   for (let i = 0; i < books.length; i++) {
     const book = books[i];
 
-    // search matches 
+
+    // search matches
+    //AW: Genre Filter Out Below
+    const genreMatches = book.genre.toLowerCase() === genreFilter;
+    console.log(book.genre);
+    console.log("look here -> " + genreFilter);
+
+    if(genreMatches) {continue;} 
+    //^^ if genre matches, then use continue statement to move onto next iteration
     const titleMatches = book.title.toLowerCase().includes(query);
     const authorMatches = book.author.toLowerCase().includes(query);
 
@@ -274,17 +286,30 @@ function getFilteredAndSorted() {
 
     // add all matches to result array
     if ((titleMatches || authorMatches) && readMatches) {
+      // console.log("something was pushed");
       result.push(book);
     }
   }
-
+/* Recap of above statements:
+1) start with the actual search/filter results from user, store those in userVars
+2) go thru books array, check to see if that current book is a match for any of the above filters
+3) if there is a match for the filters, then add that book to result array
+--AW
+*/
   // sort result array
   // localeCompare is a built-in way to sort strings alphabetically
   if (sort === "title-az") result.sort((a, b) => a.title.localeCompare(b.title));
   else if (sort === "title-za") result.sort((a, b) => b.title.localeCompare(a.title));
   else if (sort === "author-az") result.sort((a, b) => a.author.localeCompare(b.author));
   else if (sort === "author-za") result.sort((a, b) => b.author.localeCompare(a.author));
-
+  
+  /* Recap of Above statements:
+  1) Now, you have created the result array
+  2) Using the sort option the user selected, sort the result array to that option criteria
+  --AW
+  */
+  
+  //do stuff here to change result
   return result;
 }
 
@@ -354,6 +379,8 @@ function clearFilters() {
   document.getElementById("search-input").value = "";
   document.getElementById("sort-select").value = "default";
   document.getElementById("read-filter").value = "all";
+  //AW - Added this here
+  document.getElementById("genre-filter").value = "default";
   showCards();
 }
 
@@ -364,4 +391,6 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("search-input").addEventListener("input", showCards);
   document.getElementById("sort-select").addEventListener("change", showCards);
   document.getElementById("read-filter").addEventListener("change", showCards);
+  //AW - Added this here
+  document.getElementById("genre-filter").addEventListener("change", showCards);
 });
